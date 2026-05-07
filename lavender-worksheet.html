@@ -221,7 +221,7 @@ const CONFIG = {
     <div id="tab-stats" class="tab-content active">
       <div class="section-title">Aufgabe 3 – KI oder Mensch?</div>
       <div id="stats-r1"></div><div id="stats-r2"></div><div id="stats-r3"></div>
-      <div class="section-title">Aufgabe 2 – Reihenfolge (Richtig: 2-4-3-1)</div>
+      <div class="section-title">Aufgabe 2 – Reihenfolge (Richtig: 1-2-3-4)</div>
       <div id="stats-order" style="font-family:sans-serif;font-size:0.85rem;color:var(--muted)"></div>
     </div>
     <div id="tab-answers" class="tab-content">
@@ -303,16 +303,16 @@ function renderStats(subs) {
   document.getElementById('stat-count').textContent = subs.length;
   const a3ok = subs.filter(s=>s.a3.r1==='KI'&&s.a3.r2==='Mensch'&&s.a3.r3==='Mensch').length;
   document.getElementById('stat-a3-correct').textContent = subs.length ? Math.round(a3ok/subs.length*100)+'%' : '–';
-  const ok2 = subs.filter(s=>s.a2.o1==='2'&&s.a2.o2==='4'&&s.a2.o3==='3'&&s.a2.o4==='1').length;
+  const ok2 = subs.filter(s=>s.a2.o1==='4'&&s.a2.o2==='1'&&s.a2.o3==='2'&&s.a2.o4==='3').length;
   document.getElementById('stat-order-correct').textContent = subs.length ? Math.round(ok2/subs.length*100)+'%' : '–';
   [{id:'stats-r1',label:'Wer auf die Liste kommt',key:'r1',correct:'KI'},{id:'stats-r2',label:'Wie viele Zivilisten sterben dürfen',key:'r2',correct:'Mensch'},{id:'stats-r3',label:'Welche Bomben benutzt werden',key:'r3',correct:'Mensch'}].forEach(q=>{
     const ki=subs.filter(s=>s.a3[q.key]==='KI').length, m=subs.filter(s=>s.a3[q.key]==='Mensch').length, t=subs.length||1;
     document.getElementById(q.id).innerHTML=`<div class="bar-wrap"><div style="font-family:sans-serif;font-size:0.8rem;color:var(--muted);margin-bottom:4px">${q.label} <span style="color:var(--green)">✓ ${q.correct}</span></div>${bar('KI',ki,t)}${bar('Mensch',m,t)}</div>`;
   });
   const freq={};
-  subs.forEach(s=>{const k=`${s.a2.o2}-${s.a2.o4}-${s.a2.o3}-${s.a2.o1}`;freq[k]=(freq[k]||0)+1;});
+  subs.forEach(s=>{const k=`${s.a2.o2}-${s.a2.o3}-${s.a2.o4}-${s.a2.o1}`;freq[k]=(freq[k]||0)+1;});
   const sorted=Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0,5);
-  document.getElementById('stats-order').innerHTML=sorted.length?sorted.map(([k,v])=>`<div style="margin-bottom:4px"><span style="color:${k==='2-4-3-1'?'var(--green)':'var(--text)'}">${k}</span> – ${v}× ${k==='2-4-3-1'?'✓':''}</div>`).join(''):'<div class="empty-state">Keine Daten</div>';
+  document.getElementById('stats-order').innerHTML=sorted.length?sorted.map(([k,v])=>`<div style="margin-bottom:4px"><span style="color:${k==='1-2-3-4'?'var(--green)':'var(--text)'}">${k}</span> – ${v}× ${k==='1-2-3-4'?'✓':''}</div>`).join(''):'<div class="empty-state">Keine Daten</div>';
 }
 
 function bar(label,count,total){
