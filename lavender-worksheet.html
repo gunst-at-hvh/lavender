@@ -83,13 +83,13 @@
 <script>
 const CONFIG = {
   JSONBIN_BIN_ID:   '69fc5c1eadc21f119a66f7de',
-  JSONBIN_API_KEY:  'DEIN_MASTER_KEY',
+  JSONBIN_API_KEY:  '$2a$10$KGCw4Lf8nQS0u/LXRcj5puNNu0XjgKri4eYX4V4bvxRATOW3iKDVS',
   TEACHER_PASSWORD: 'lehrer123',
   TEACHER_URL_PARAM: 'lehrer'
 };
 </script>
 
-<div id="setup-notice">⚠ Master Key fehlt noch. JSONBin → Account → API Keys → Master Key kopieren → hier bei DEIN_MASTER_KEY eintragen.</div>
+<div id="setup-notice">⚠ Master Key fehlt noch. JSONBin → Account → API Keys → Master Key kopieren → hier bei $2a$10$KGCw4Lf8nQS0u/LXRcj5puNNu0XjgKri4eYX4V4bvxRATOW3iKDVS eintragen.</div>
 
 <div id="student-view">
 <header>
@@ -238,7 +238,7 @@ function init() {
     document.getElementById('student-view').style.display = 'none';
     document.getElementById('teacher-view').style.display = 'block';
   }
-  if (CONFIG.JSONBIN_API_KEY === 'DEIN_MASTER_KEY') document.getElementById('setup-notice').style.display = 'block';
+  if (CONFIG.JSONBIN_API_KEY === '$2a$10$KGCw4Lf8nQS0u/LXRcj5puNNu0XjgKri4eYX4V4bvxRATOW3iKDVS') document.getElementById('setup-notice').style.display = 'block';
 }
 
 function toggleArticle() {
@@ -252,7 +252,7 @@ async function submitAnswers() {
   const btn = document.getElementById('submit-btn');
   const msg = document.getElementById('status-msg');
   msg.className = 'status-msg';
-  if (CONFIG.JSONBIN_API_KEY === 'DEIN_MASTER_KEY') {
+  if (CONFIG.JSONBIN_API_KEY === '$2a$10$KGCw4Lf8nQS0u/LXRcj5puNNu0XjgKri4eYX4V4bvxRATOW3iKDVS') {
     msg.textContent = '⚠ Master Key fehlt – Antworten konnten nicht gespeichert werden.';
     msg.className = 'status-msg error'; return;
   }
